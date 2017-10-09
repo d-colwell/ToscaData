@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EFD8623D-76E1-4B22-B037-B64C4C885C0F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ToscaExporter</RootNamespace>
+    <AssemblyName>ToscaExporter</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Base">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\Base.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="BusinessObjects">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\BusinessObjects.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MongoDB.Bson, Version=2.4.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Bson.2.4.4\lib\net45\MongoDB.Bson.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=2.4.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.2.4.4\lib\net45\MongoDB.Driver.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core, Version=2.4.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.Core.2.4.4\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Persistency">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\Persistency.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RequirementsManagement">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\RequirementsManagement.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.0.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Tricentis.AutomationBase">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\Tricentis.AutomationBase.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Tricentis.Data">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\Tricentis.Data.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="XDefinitions">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\XDefinitions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Converter\ConvertedTypeAttribute.cs" />
+    <Compile Include="Converter\ConverterBase.cs" />
+    <Compile Include="Converter\ConverterImplementations\XTestStepValueConverter.cs" />
+    <Compile Include="Converter\ConverterImplementations\TestStepValueConverter.cs" />
+    <Compile Include="Converter\ConverterImplementations\ExecutionTestStepValueLogConverter.cs" />
+    <Compile Include="Converter\ConverterImplementations\ExecutionTestStepLogConverter.cs" />
+    <Compile Include="Converter\ConverterImplementations\RequirementConverter.cs" />
+    <Compile Include="Converter\ConverterImplementations\XModuleAttributeConverter.cs" />
+    <Compile Include="Converter\ConverterImplementations\ModuleConverter.cs" />
+    <Compile Include="Converter\ConverterImplementations\XModuleConverter.cs" />
+    <Compile Include="Converter\ConverterImplementations\XTestStepConverter.cs" />
+    <Compile Include="Converter\ConverterImplementations\TestStepConverter.cs" />
+    <Compile Include="Converter\ConverterImplementations\ExecutionEntryConverter.cs" />
+    <Compile Include="Converter\ConverterImplementations\ExecutionTestCaseLogConverter.cs" />
+    <Compile Include="Converter\ConverterImplementations\ExecutionLogConverter.cs" />
+    <Compile Include="Converter\ConverterImplementations\ExecutionListConverter.cs" />
+    <Compile Include="Converter\ConverterImplementations\TestConverter.cs" />
+    <Compile Include="Converter\IConverter.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ExportTaskInterceptor.cs" />
+    <Compile Include="Tasks\ExporterTask.cs" />
+    <Compile Include="ToscaExporter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ToscaExporter.ObjectModel\ToscaExporter.ObjectModel.csproj">
+      <Project>{8819ccee-c137-46eb-9678-23deab3f6cae}</Project>
+      <Name>ToscaExporter.ObjectModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToscaReporter", "ToscaReporter\ToscaReporter.csproj", "{044242FF-9F42-4FED-B9D7-197FDEB6A20A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToscaExporter.ObjectModel", "..\ToscaExporter\ToscaExporter.ObjectModel\ToscaExporter.ObjectModel.csproj", "{8819CCEE-C137-46EB-9678-23DEAB3F6CAE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{044242FF-9F42-4FED-B9D7-197FDEB6A20A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{044242FF-9F42-4FED-B9D7-197FDEB6A20A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{044242FF-9F42-4FED-B9D7-197FDEB6A20A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{044242FF-9F42-4FED-B9D7-197FDEB6A20A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8819CCEE-C137-46EB-9678-23DEAB3F6CAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8819CCEE-C137-46EB-9678-23DEAB3F6CAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8819CCEE-C137-46EB-9678-23DEAB3F6CAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8819CCEE-C137-46EB-9678-23DEAB3F6CAE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
