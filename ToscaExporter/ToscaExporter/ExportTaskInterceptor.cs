@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ToscaExporter.Tasks;
+using Tricentis.TCCore.Base;
 using Tricentis.TCCore.BusinessObjects.Folders;
 using Tricentis.TCCore.Persistency;
 using Tricentis.TCCore.Persistency.AddInManager;
@@ -12,7 +13,7 @@ namespace ToscaExporter
 {
     public class ExportTaskInterceptor : TaskInterceptor
     {
-        public ExportTaskInterceptor(TCFolder folder)
+        public ExportTaskInterceptor(TCObject folder)
         {
 
         }
@@ -20,6 +21,8 @@ namespace ToscaExporter
         {
             if (obj is TCFolder)
                 tasks.Add(new ExporterTask());
+            if(obj is TCBaseProject)
+                tasks.Add(new StartMonitorTask());
         }
     }
 }

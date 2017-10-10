@@ -16,5 +16,9 @@ namespace ToscaExporter
                 return Resources.AddInName;
             }
         }
+        public override void InitializeAfterOpenWorkspace()
+        {
+            base.InitializeAfterOpenWorkspace();    
+        }
     }
 }

@@ -114,6 +114,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="ExportTaskInterceptor.cs" />
+    <Compile Include="Tasks\StartMonitorTask.cs" />
     <Compile Include="Tasks\ExporterTask.cs" />
     <Compile Include="ToscaExporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -132,6 +133,9 @@
       <Project>{8819ccee-c137-46eb-9678-23deab3f6cae}</Project>
       <Name>ToscaExporter.ObjectModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DbConverter\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
