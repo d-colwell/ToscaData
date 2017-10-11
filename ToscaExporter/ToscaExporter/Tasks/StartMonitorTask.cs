@@ -69,7 +69,7 @@ namespace ToscaExporter.Tasks
             {
                 lock (_syncRoot)
                 {
-                    testResult = !isCanceled;
+                    testResult = !isCancelled;
                     if (DateTime.Now.Subtract(lastChangedDate).TotalSeconds > 10 && objectsToSync.Count > 0)
                     {
                         MongoDB.Driver.MongoClient client = new MongoDB.Driver.MongoClient();
