@@ -80,6 +80,9 @@
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\Tricentis.AutomationBase.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Tricentis.Data">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\Tricentis.Data.dll</HintPath>
+    </Reference>
     <Reference Include="XDefinitions">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\TRICENTIS\Tosca Testsuite\XDefinitions.dll</HintPath>
       <Private>False</Private>
