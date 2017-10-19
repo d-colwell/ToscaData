@@ -16,7 +16,7 @@ using Tricentis.TCCore.Base.Folders;
 using Newtonsoft.Json;
 using MongoDB.Driver;
 using ToscaExporter.ObjectModel.DataObjects;
-
+using ex = ToscaExporter.ExcelConverter;
 namespace ToscaExporter.Tasks
 {
     class ExporterTask : ThreadTask
@@ -111,6 +111,9 @@ namespace ToscaExporter.Tasks
                     tasks.Clear();
                 }
             }
+
+            ex.ExcelConverter conv = new ex.ExcelConverter();
+            conv.GenerateAccentureReport();
         }
 
         private async Task<ReportableObject> InsertObject(ReportableObject obj, IMongoCollection<ReportableObject> reportableObjects, IMongoCollection<ObjectHistory> objectHistories, Snapshot currentSnapshot)

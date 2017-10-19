@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExcelConverter.cs" />
+    <Compile Include="Map.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -70,10 +71,6 @@
     <ProjectReference Include="..\ToscaExporter.ObjectModel\ToscaExporter.ObjectModel.csproj">
       <Project>{8819ccee-c137-46eb-9678-23deab3f6cae}</Project>
       <Name>ToscaExporter.ObjectModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ToscaExporter\ToscaExporter.csproj">
-      <Project>{efd8623d-76e1-4b22-b037-b64c4c885c0f}</Project>
-      <Name>ToscaExporter</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

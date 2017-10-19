@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\..\..\..\..\..\Program Files %28x86%29\TRICENTIS\Tosca Testsuite\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -124,6 +124,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ToscaExporter.ExcelConverter\ToscaExporter.ExcelConverter.csproj">
+      <Project>{82241ebf-9986-47b8-b73f-0e0cb818a402}</Project>
+      <Name>ToscaExporter.ExcelConverter</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ToscaExporter.ObjectModel\ToscaExporter.ObjectModel.csproj">
       <Project>{8819ccee-c137-46eb-9678-23deab3f6cae}</Project>
       <Name>ToscaExporter.ObjectModel</Name>

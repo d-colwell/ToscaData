@@ -25,6 +25,11 @@ namespace ToscaExporter.ExcelConverter
                     MongoDB.Driver.MongoClient client = new MongoDB.Driver.MongoClient();
                     var db = client.GetDatabase("tosca");
                     var reportableObjects = db.GetCollection<ReportableObject>("reportable_objects");
+                    var mapping = db.GetCollection<Map>("mapping");
+                    var currentMaxMapping = mapping.Find(x => true).SortByDescending(x => x.AlternateId)?.FirstOrDefault();
+                    int currentMax = 1;
+                    if (currentMaxMapping != null)
+                        currentMax = currentMaxMapping.AlternateId;
                     #region Test Execution
                     var executionLogs = reportableObjects.FindSync<ReportableObject>(Builders<ReportableObject>.Filter.Eq<string>("Type", "Execution Test Case Log")).ToList();
 
@@ -39,10 +44,17 @@ namespace ToscaExporter.ExcelConverter
                     ws.Cells[1, 9].Value = "LoggedOn";
                     ws.Cells[1, 10].Value = "LoggedBy";
                     ws.Cells[1, 11].Value = "ExecutedTestCase";
+                    ws.Cells[1, 12].Value = "Alternate ID";
 
                     for (int i = 0; i < executionLogs.Count; i++)
                     {
                         ReportableObject log = executionLogs[i];
+                        Map existingMap = mapping.Find(x => x.ID == log.ID).FirstOrDefault();
+                        if (existingMap == null)
+                        {
+                            existingMap = new Map { ID = log.ID, AlternateId = currentMax++ };
+                            mapping.InsertOne(existingMap);
+                        }
                         ws.Cells[i + 2, 1].Value = log.ID;
                         ws.Cells[i + 2, 2].Value = log["DisplayedName"];
                         ws.Cells[i + 2, 3].Value = "Product Test";
@@ -60,6 +72,7 @@ namespace ToscaExporter.ExcelConverter
 
                         ws.Cells[i + 2, 10].Value = log["UserName"];
                         ws.Cells[i + 2, 11].Value = log["ExecutedTestCase"];
+                        ws.Cells[i + 2, 12].Value = existingMap.AlternateId;
                     }
                     #endregion
                     #region Test Cases
@@ -79,9 +92,16 @@ namespace ToscaExporter.ExcelConverter
                     ws.Cells[1, 11].Value = "LoggedBy";
                     ws.Cells[1, 12].Value = "LoggedOn";
                     ws.Cells[1, 13].Value = "Requirement";
+                    ws.Cells[1, 14].Value = "Alternate ID";
                     for (int i = 0; i < testCases.Count; i++)
                     {
                         ReportableObject log = testCases[i];
+                        Map existingMap = mapping.Find(x => x.ID == log.ID).FirstOrDefault();
+                        if (existingMap == null)
+                        {
+                            existingMap = new Map { ID = log.ID, AlternateId = currentMax++ };
+                            mapping.InsertOne(existingMap);
+                        }
                         var reqFilter = Builders<ReportableObject>.Filter.ElemMatch(x => x.Links, x => x.LinkDescription.Description == "Linked Test Cases" && x.LinkedObjects.Contains(log.ID));
                         var reqs = reportableObjects.Find(reqFilter).ToList();
                         ws.Cells[i + 2, 1].Value = log.ID;
@@ -98,6 +118,8 @@ namespace ToscaExporter.ExcelConverter
                         ws.Cells[i + 2, 12].Value = "";
                         if (reqs.Count > 0)
                             ws.Cells[i + 2, 13].Value = reqs.Select(x => x.ID).Aggregate((x, y) => $"{x},{y}");
+                        ws.Cells[i + 2, 14].Value = existingMap.AlternateId;
+
                     }
 
                     var reqWS = wb.Worksheets.Add("Requirements");
@@ -105,18 +127,30 @@ namespace ToscaExporter.ExcelConverter
                     for (int i = 0; i < allReqs.Count; i++)
                     {
                         var req = allReqs[i];
-
+                        Map existingMap = mapping.Find(x => x.ID == req.ID).FirstOrDefault();
+                        if (existingMap == null)
+                        {
+                            existingMap = new Map { ID = req.ID, AlternateId = currentMax++ };
+                            mapping.InsertOne(existingMap);
+                        }
                         for (int j = 0; j < req.Properties.Count; j++)
                         {
                             if (i == 0)
                             {
                                 if (j == 0)
+                                {
                                     reqWS.Cells[1, 1].Value = "ID";
-                                reqWS.Cells[1, j + 2].Value = req.Properties[j].Name;
+                                    reqWS.Cells[1, 2].Value = "Alternate ID";
+                                }
+                                reqWS.Cells[1, j + 3].Value = req.Properties[j].Name;
                             }
                             if (j == 0)
-                                reqWS.Cells[i+2, 1].Value = req.ID;
-                            reqWS.Cells[i + 2, j + 2].Value = req.Properties[j].Value;
+                            {
+                                reqWS.Cells[i + 2, 1].Value = req.ID;
+                                reqWS.Cells[i + 2, 2].Value = existingMap.AlternateId;
+
+                            }
+                            reqWS.Cells[i + 2, j + 3].Value = req.Properties[j].Value;
                         }
                     }
                     #endregion
